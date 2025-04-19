@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Parking System</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <div class="logo">
+        <div class="logo-icon">P</div>
+        <h1>SmartPark</h1>
+      </div>
+      <p class="tagline">Intelligent Vehicle Parking Management</p>
+    </header>
+
+    <main>
+      <section class="intro-section">
+        <h2>Welcome to SmartPark</h2>
+        <p>An efficient way to manage your parking spaces. Set up your parking lot, park and retrieve vehicles with ease.</p>
+      </section>
+
+      <section class="setup-section" id="setupSection">
+        <h2>Setup Parking</h2>
+        <p>Start by setting the total number of parking slots available.</p>
+        <form id="setupForm">
+          <div class="form-group">
+            <label for="totalSlots">Total Parking Slots:</label>
+            <input type="number" id="totalSlots" min="1" max="100" required placeholder="Enter number of slots">
+          </div>
+          <button type="submit" class="btn primary-btn">Initialize Parking</button>
+        </form>
+      </section>
+
+      <section class="parking-dashboard" id="parkingDashboard" style="display: none;">
+        <div class="dashboard-header">
+          <h2>Parking Dashboard</h2>
+          <div class="stats">
+            <div class="stat-item available">
+              <span id="availableCount">0</span>
+              <span>Available</span>
+            </div>
+            <div class="stat-item occupied">
+              <span id="occupiedCount">0</span>
+              <span>Occupied</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-tabs">
+          <button class="tab-btn active" data-tab="parkVehicle">Park Vehicle</button>
+          <button class="tab-btn" data-tab="removeVehicle">Remove Vehicle</button>
+          <button class="tab-btn" data-tab="viewParked">View Parked</button>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-pane active" id="parkVehicle">
+            <form id="parkForm">
+              <div class="form-group">
+                <label for="vehicleReg">Vehicle Registration Number:</label>
+                <input type="text" id="vehicleReg" required placeholder="e.g., ABC123" pattern="[A-Za-z0-9]+" 
+                  title="Registration should only contain letters and numbers">
+              </div>
+              <button type="submit" class="btn primary-btn">Park Vehicle</button>
+            </form>
+          </div>
+
+          <div class="tab-pane" id="removeVehicle">
+            <form id="removeForm">
+              <div class="form-group">
+                <label for="removeReg">Vehicle Registration Number:</label>
+                <input type="text" id="removeReg" required placeholder="e.g., ABC123" pattern="[A-Za-z0-9]+" 
+                  title="Registration should only contain letters and numbers">
+              </div>
+              <button type="submit" class="btn primary-btn">Remove Vehicle</button>
+            </form>
+          </div>
+
+          <div class="tab-pane" id="viewParked">
+            <div class="parked-list-container">
+              <table id="parkedList">
+                <thead>
+                  <tr>
+                    <th>Slot</th>
+                    <th>Registration</th>
+                    <th>Entry Time</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Parked vehicles will be listed here -->
+                </tbody>
+              </table>
+              <p id="noVehiclesMsg" class="no-data-msg">No vehicles are currently parked.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="slots-container">
+          <h3>Parking Slots</h3>
+          <div class="slots-visualization" id="slotsVisualization">
+            <!-- Slots will be generated here -->
+          </div>
+        </div>
+
+        <button id="resetSystem" class="btn danger-btn">Reset System</button>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 SmartPark - Intelligent Parking Solutions</p>
+    </footer>
+
+    <div id="notificationContainer" class="notification-container"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
